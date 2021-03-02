@@ -66,8 +66,12 @@ EOF
 
 case "$1" in
      "-i")
+	 shift
 	 mount_image
-	 install_prog "$2"
+	 for pkg in "$@"; do
+	     echo "==> Building $pkg"
+	     install_prog "$pkg"
+	 done
 	 ;;
      "-n")
 	 init_image
@@ -75,10 +79,6 @@ case "$1" in
      "-b")
 	 mount_image
 	 build_image
-	 ;;
-     "-m")
-	 mount_image
-	 exit
 	 ;;
 esac
 

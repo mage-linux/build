@@ -1,0 +1,18 @@
+Mage Build
+==========
+Mage GNU/Linux's image builder. The goal of that toolset is to build a minimal
+image capable of building itself. It will later be used to build full versions
+of mage. All packages are statically built against musl-libc to be able to
+easily move binaries and avoid the problems of dynamic linking.
+The main script mk.sh has 3 options, -n which initialize a new image, -i which
+installs a new package and -b which builds the final image.
+To build an image, you will need a compiler targetting musl, which you can
+obtain with mussel or musl-cross-make if you are not on a distribution shipped
+with musl.
+The typical build looks like this:
+---
+./mk.sh -n                                            # Create the image
+./mk.sh -i kernel busybox init musl make binutils gcc # Install packages
+./mk.sh -b                                            # Finish the image
+---
+You can now use qemu on the image at output/image.
