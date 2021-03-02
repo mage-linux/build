@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 version=10.2.0
 gmp_version=6.1.2
@@ -10,7 +10,7 @@ gmp="https://ftp.gnu.org/gnu/gmp/gmp-$gmp_version.tar.xz"
 mpfr="https://ftp.gnu.org/gnu/mpfr/mpfr-$mpfr_version.tar.xz"
 mpc="https://ftp.gnu.org/gnu/mpc/mpc-$mpc_version.tar.gz"
 
-for file in $mpc $source $gmp $mpfr; do
+for file in $source $gmp $mpfr $mpc; do
     wget "$file"
 done
 
@@ -23,13 +23,13 @@ mv "gmp-$gmp_version" gmp
 tar xf "../mpfr-$mpfr_version.tar.xz"
 mv "mpfr-$mpfr_version" mpfr
 
-tar xf "../mpc-$mpc_version.tar.xz"
+tar xf "../mpc-$mpc_version.tar.gz"
 mv "mpc-$mpc_version" mpc
 
 mkdir build && cd build
-../gcc/configure \
-    --prefix=/usr \
-    --libexecdir=/usr/lib \
+
+../configure \
+    --prefix=/ \
     --mandir=/usr/share/man \
     --infodir=/usr/share/info \
     --disable-multilib \
@@ -51,7 +51,9 @@ mkdir build && cd build
     --enable-languages=c,c++ \
     --without-included-gettext \
     --build=x86_64-linux-musl \
-    --enable-bootstrap
+    --host=x86_64-linux-musl \
+    --target=x86_64-linux-musl \
+    --disable-bootstrap
 
-make
-make DESTDIR="$1" install
+make "$MAKEFLAGS"
+make DESTDIR="$1/tools" install "$MAKEFLAGS"

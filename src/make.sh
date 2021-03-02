@@ -8,6 +8,6 @@ tar xf "make-$version.tar.gz"
 
 cd "make-$version"
 
-./configure --prefix="$1/tools" --without-guile
+./configure --prefix="/" --without-guile
 
-make "$MAKEFLAGS" && make install
+make "$MAKEFLAGS" && make DESTDIR="$1" install

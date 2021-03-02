@@ -10,7 +10,7 @@ cd "binutils-$version"
 mkdir build && cd build
 
 ../configure \
-    --prefix=/usr \
+    --prefix=/ \
     --enable-deterministic-archives \
     --disable-gold \
     --enable-lto \

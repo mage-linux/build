@@ -7,7 +7,7 @@ rm -rf build
 mkdir -p build && cd build
 
 # Build the image and mount it
-fallocate -l10G image
+fallocate -l50G image
 echo "n
 p
 1
@@ -31,7 +31,7 @@ install -d -m 1777 mnt/tmp
 
 root="$PWD"
 
-for prog in kernel busybox musl make binutils; do
+for prog in kernel busybox musl init make binutils gcc; do
     "../$prog.sh" "$root/mnt"
     cd "$root"
 done
@@ -39,6 +39,7 @@ done
 # Install files to the base system
 install -Dm755 ../../files/udhcpc.script mnt/usr/share/udhcpc/default.script
 cp ../../files/* mnt/etc
+mkdir mnt/etc/rc.d/
 
 # Install the bootloader
 grub-install --modules=part_msdos \
@@ -50,11 +51,12 @@ uid=$(fdisk -l image | grep "Disk identifier")
 uid=${uid##Disk identifier: 0x}
 
 cat <<EOF > mnt/boot/grub/grub.cfg
-linux /boot/bzImage quiet init=/bin/sh root=PARTUUID=$uid
+linux /boot/bzImage quiet root=PARTUUID=$uid
 boot
 EOF
 
 umount mnt
+losetup -d "$loopd"
 
 unset CFLAGS
 unset LDFLAGS

@@ -7,4 +7,4 @@ wget "$source"
 tar xf "init-$version.tar.xz"
 cd "init-$version"
 
-make DESTDIR="$1" install
+make DESTDIR="$1" install "$MAKEFLAGS"
