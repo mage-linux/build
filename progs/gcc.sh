@@ -30,8 +30,6 @@ mkdir build && cd build
 
 ../configure \
     --prefix=/ \
-    --mandir=/usr/share/man \
-    --infodir=/usr/share/info \
     --disable-multilib \
     --disable-symvers \
     --disable-libmpx \
