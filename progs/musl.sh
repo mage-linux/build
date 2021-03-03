@@ -12,6 +12,6 @@ cd "musl-$version"
 
 make "$MAKEFLAGS"
 make DESTDIR="$1/tools" install
-mkdir "$1/tools/bin"
+mkdir -p "$1/tools/bin"
 cd "$1"
-ln -s /tools/usr/lib/ld-musl-x86_64.so.1 "/tools/bin/ldd"
+ln -s /tools/usr/lib/ld-musl-x86_64.so.1 "tools/bin/ldd"

@@ -1,6 +1,6 @@
 # /etc/profile
 
-#Set our umask
+# Set our umask
 umask 022
 
 # Set our default path

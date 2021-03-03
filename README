@@ -16,3 +16,14 @@ The typical build looks like this:
 ./mk.sh -b                                            # Finish the image
 ---
 You can now use qemu on the image at output/image.
+
+TODO
+====
+[ ] Check checksums
+[ ] Proper messages
+[ ] Clean the code
+[ ] Improve security
+  [ ] Add hardened_malloc to musl
+  [ ] Add SELinux
+  [ ] Change boot command line
+[ ] Write a new bootloader to replace GNU/GRUB with something simpler

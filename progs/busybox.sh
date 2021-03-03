@@ -18,5 +18,5 @@ make "$MAKEFLAGS"
 cp busybox "$1/usr/bin/busybox"
 cd "$1"
 for util in $("./usr/bin/busybox" --list-full); do
-  ln -s /usr/bin/busybox "$util"
+    ln -s /usr/bin/busybox "$util"
 done
