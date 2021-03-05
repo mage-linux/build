@@ -11,9 +11,9 @@ obtain with mussel or musl-cross-make if you are not on a distribution shipped
 with musl.
 The typical build looks like this:
 ---
-./mk.sh -n                                            # Create the image
-./mk.sh -i kernel busybox init musl make binutils gcc # Install packages
-./mk.sh -b                                            # Finish the image
+./mk.sh -n                                                # Create the image
+./mk.sh -i kernel busybox init musl make binutils gcc ... # Install packages
+./mk.sh -b                                                # Finish the image
 ---
 You can now use qemu on the image at output/image.
 
@@ -23,7 +23,10 @@ TODO
 [ ] Proper messages
 [ ] Clean the code
 [ ] Improve security
-  [ ] Add hardened_malloc to musl
-  [ ] Add SELinux
-  [ ] Change boot command line
+    [ ] Add hardened_malloc to musl
+    [ ] Add SELinux
+    [ ] Change boot command line
 [ ] Write a new bootloader to replace GNU/GRUB with something simpler
+[ ] Separate linux and linux headers (Maybe - since its a temporary environment,
+    we don't expect the kernel to be updated, and this separation might only
+    make sense on the final system)

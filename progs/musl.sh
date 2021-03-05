@@ -10,8 +10,9 @@ cd "musl-$version"
 
 ./configure --prefix=/ -disable-gcc-wrapper
 
-make "$MAKEFLAGS"
+make
 make DESTDIR="$1/tools" install
+
 mkdir -p "$1/tools/bin"
 cd "$1"
 ln -s /tools/usr/lib/ld-musl-x86_64.so.1 "tools/bin/ldd"

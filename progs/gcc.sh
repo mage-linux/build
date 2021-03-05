@@ -58,5 +58,5 @@ mkdir build && cd build
     --target=x86_64-linux-musl \
     --disable-bootstrap
 
-make "$MAKEFLAGS"
-make DESTDIR="$1/tools" install "$MAKEFLAGS"
+make
+make DESTDIR="$1/tools" install

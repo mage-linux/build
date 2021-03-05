@@ -10,4 +10,5 @@ cd "make-$version"
 
 ./configure --prefix="/" --without-guile
 
-make "$MAKEFLAGS" && make DESTDIR="$1" install
+make
+make DESTDIR="$1" install

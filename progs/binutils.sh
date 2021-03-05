@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 version=2.36
 source=https://ftp.gnu.org/gnu/binutils/binutils-$version.tar.xz
@@ -26,5 +26,5 @@ make
 make DESTDIR="$1/tools" install
 
 make -C ld clean
-make -C ld LIB_PATH=/usr/lib:/lib 
-cp -v ld/ld-new "$1/tools/bin"
+make -C ld LIB_PATH=/usr/lib:/lib
+cp ld/ld-new "$1/tools/bin"
