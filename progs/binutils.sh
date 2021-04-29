@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-version=2.36
+version=2.36.1
 source=https://ftp.gnu.org/gnu/binutils/binutils-$version.tar.xz
 
 wget "$source"

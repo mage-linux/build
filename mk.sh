@@ -10,8 +10,8 @@ init_image() {
 
     # Create a basic filesystem
     for d in usr bin sbin usr/bin usr/sbin dev etc home lib mnt opt proc srv \
-                 sys var/lib var/lock var/log var/run var/spool usr/include \
-                 usr/lib usr/share usr/src boot tools; do
+                 sys var/lib var/lock var/log run var/run var/spool \
+                 usr/include usr/lib usr/share usr/src boot tools; do
         mkdir -p "output/mnt/$d"
     done
     install -d -m 0750 output/mnt/root
@@ -20,7 +20,6 @@ init_image() {
             output/mnt/usr/share/udhcpc/default.script
     cp files/* output/mnt/etc
     mkdir output/mnt/etc/rc.d/
-    touch output/mnt/etc/rc.d/empty
 
     install -d -m 1777 output/mnt/tmp
 }
@@ -34,7 +33,7 @@ install_prog() {
 }
 
 build_image() {
-    rm output/image
+    rm -f output/image
     fallocate -l50G output/image
     echo "n
 p

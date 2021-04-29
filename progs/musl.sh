@@ -15,4 +15,5 @@ make DESTDIR="$1/tools" install
 
 mkdir -p "$1/tools/bin"
 cd "$1"
-ln -s /tools/usr/lib/ld-musl-x86_64.so.1 "tools/bin/ldd"
+ln -sf /tools/lib/libc.so tools/lib/ld-musl-x86_64.so.1
+ln -sf /tools/lib/libc.so tools/bin/ldd

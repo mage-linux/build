@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-version=20210305
+version=20210528
 source="https://github.com/mage-linux/core/releases/download/$version/core-$version.tar.xz"
 
 wget "$source"
