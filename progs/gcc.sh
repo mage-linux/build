@@ -60,3 +60,5 @@ mkdir build && cd build
 
 make
 make DESTDIR="$1/tools" install
+
+ln -sf gcc tools/bin/cc
